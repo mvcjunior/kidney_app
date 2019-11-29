@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kidney_app/paginas/page_informacoes_paciente.dart';
 
 class MenuDrawer extends StatelessWidget {
   static final begin = Offset(0.0, 1.0);
@@ -24,7 +25,7 @@ class MenuDrawer extends StatelessWidget {
           ListTile(
             title: Text('Informações do Paciente'),
             onTap: () {
-              Navigator.of(context).push(_createRouteOne());
+              Navigator.of(context).push(_createRoutePageInformacoesPaciente());
             },
           ),
           ListTile(
@@ -53,6 +54,18 @@ class MenuDrawer extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Route _createRoutePageInformacoesPaciente() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => PageInformacoesPaciente(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
     );
   }
 
