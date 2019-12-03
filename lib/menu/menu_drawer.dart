@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kidney_app/paginas/page_informacoes_paciente.dart';
+import 'package:kidney_app/paginas/page_perfil.dart';
+import 'package:kidney_app/paginas/page_glicemia.dart';
+import 'package:kidney_app/paginas/page_pressao_arterial.dart';
 
 class MenuDrawer extends StatelessWidget {
   static final begin = Offset(0.0, 1.0);
@@ -16,16 +18,16 @@ class MenuDrawer extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
         children: <Widget>[
           DrawerHeader(
-            child: Text('Perfil'),
+            child: Text('Informações do Paciente'),
             margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
             decoration: BoxDecoration(
               color: Colors.lightGreenAccent,
             ),
           ),
           ListTile(
-            title: Text('Informações do Paciente'),
+            title: Text('Perfil'),
             onTap: () {
-              Navigator.of(context).push(_createRoutePageInformacoesPaciente());
+              Navigator.of(context).push(_createRoutePagePerfil());
             },
           ),
           ListTile(
@@ -41,15 +43,15 @@ class MenuDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('Registros Pressão Arterial'),
+            title: Text('Pressão Arterial'),
             onTap: () {
-              Navigator.of(context).push(_createRouteOne());
+              Navigator.of(context).push(_createRoutePressaoArterial());
             },
           ),
           ListTile(
-            title: Text('Registros Glicemia Capilar'),
+            title: Text('Glicemia Capilar'),
             onTap: () {
-              Navigator.of(context).push(_createRouteOne());
+              Navigator.of(context).push(_createRoutePageGlicemia());
             },
           ),
         ],
@@ -57,9 +59,33 @@ class MenuDrawer extends StatelessWidget {
     );
   }
 
-  Route _createRoutePageInformacoesPaciente() {
+  Route _createRoutePagePerfil() {
     return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => PageInformacoesPaciente(),
+      pageBuilder: (context, animation, secondaryAnimation) => PagePerfil(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
+
+  Route _createRoutePressaoArterial() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => PagePressaoArterial(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
+
+  Route _createRoutePageGlicemia() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => PageGlicemia(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         return SlideTransition(
           position: animation.drive(tween),

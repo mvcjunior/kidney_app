@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 
-class PageInformacoesPaciente extends StatefulWidget {
+class PageGlicemia extends StatefulWidget {
 
-  PageInformacoesPaciente({Key key}) : super(key: key);
+  PageGlicemia({Key key}) : super(key: key);
 
   @override
-  _PageInformacoesPaciente createState() => _PageInformacoesPaciente();
+  _PageGlicemia createState() => _PageGlicemia();
 }
 
 
-class _PageInformacoesPaciente extends State<PageInformacoesPaciente> {
+class _PageGlicemia extends State<PageGlicemia> {
 
-  _PageInformacoesPaciente({Key key});
+  _PageGlicemia({Key key});
 
   final _formKey = GlobalKey<FormState>();
-  final nomeController = TextEditingController();
-  final emailController = TextEditingController();
-  final telefoneController = MaskedTextController(mask: '(00) 0000-00000');
+  final horaController = TextEditingController();
+  final dataController = TextEditingController();
+  final glicemiaController = TextEditingController();
 
 
   @override
@@ -29,6 +29,7 @@ class _PageInformacoesPaciente extends State<PageInformacoesPaciente> {
   Widget build(BuildContext context2) {
     return Scaffold(
         appBar: AppBar(
+          elevation: 0,
           leading: Builder(
               builder: (BuildContext context) {
                 return IconButton(
@@ -48,7 +49,7 @@ class _PageInformacoesPaciente extends State<PageInformacoesPaciente> {
                     children: <Widget>[
                       TextFormField(
                         textCapitalization: TextCapitalization.words,
-                        controller: nomeController,
+                        controller: horaController,
                         decoration: InputDecoration(
                           labelText: 'Nome',
                         ),
@@ -62,7 +63,7 @@ class _PageInformacoesPaciente extends State<PageInformacoesPaciente> {
                       ),
                       TextFormField(
                         textCapitalization: TextCapitalization.words,
-                        controller: emailController,
+                        controller: dataController,
                         decoration: InputDecoration(
                           labelText: 'E-mail',
                         ),
@@ -76,11 +77,10 @@ class _PageInformacoesPaciente extends State<PageInformacoesPaciente> {
                       ),
                       TextFormField(
                         keyboardType: TextInputType.phone,
-                        controller: telefoneController,
+                        controller: glicemiaController,
                         decoration: InputDecoration(
                           labelText: 'Telefone',
                         ),
-                        //initialValue: '',
                         validator: (nome) {
                           if (nome.isEmpty) {
                             return 'Preencha seu e-mail';
@@ -88,8 +88,7 @@ class _PageInformacoesPaciente extends State<PageInformacoesPaciente> {
                           return null;
                         },
                       ),
-                      MaterialButton(
-                        minWidth: 2000,
+                      RaisedButton(
                         child: Text('Atualizar'),
                         onPressed: () {
                           Navigator.pop(context);
