@@ -10,6 +10,7 @@ class Utils {
     'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
   static final  String BARRA = '/';
+  static final  String ESPACO = ' ';
   static final  String DOIS_PONTOS = ':';
 
   static String formataData(DateTime data) {
@@ -24,12 +25,15 @@ class Utils {
   }
 
   static String formataDataHora (DateTime dataHora ) {
-    return numero(dataHora.day) + BARRA + numero(dataHora.month) + BARRA + dataHora.year.toString() +
+    return numero(dataHora.day) + ESPACO + meses[dataHora.month-1].substring(0,3).toUpperCase() + ESPACO + dataHora.year.toString() +
       ' ' + numero(dataHora.hour) + DOIS_PONTOS + numero(dataHora.minute);
   }
 
   static String formataPressao (int sistolica, int diastolica ) {
     return sistolica.toString() + ' / ' + diastolica.toString() + ' mmHg';
+  }
+  static String formataGlicemia (int glicemia) {
+    return glicemia.toString() +  ' mg/dl';
   }
 
   static String numero(int numero) {

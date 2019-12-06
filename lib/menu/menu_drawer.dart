@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kidney_app/paginas/page_lista_glicemia.dart';
 import 'package:kidney_app/paginas/page_perfil.dart';
-import 'package:kidney_app/paginas/page_glicemia.dart';
 import 'package:kidney_app/paginas/page_lista_pressao_arterial.dart';
 
 class MenuDrawer extends StatelessWidget {
@@ -85,7 +85,7 @@ class MenuDrawer extends StatelessWidget {
 
   Route _createRoutePageGlicemia() {
     return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => PageGlicemia(),
+      pageBuilder: (context, animation, secondaryAnimation) => PageListaGlicemia(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         return SlideTransition(
           position: animation.drive(tween),

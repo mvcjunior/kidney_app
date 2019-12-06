@@ -77,10 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       drawer: MenuDrawer(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: null,
-
-      ),
+      floatingActionButton: null,
       bottomNavigationBar: MenuBottom(),// This trailing comma makes auto-formatting nicer for build methods.
     );
   }

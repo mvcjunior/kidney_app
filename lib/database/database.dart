@@ -14,6 +14,10 @@ void populateDb(Database database, int version) async {
   await database.execute("CREATE TABLE pressao_arterial ("
       "id INTEGER PRIMARY KEY, sistolica INTEGER, diastolica INTEGER, "
       "data_hora TEXT, data_hora_inclusao TEXT, data_hora_alteracao TEXT)");
+
+  await database.execute("CREATE TABLE glicemia ("
+      "id INTEGER PRIMARY KEY, indice_glicemico INTEGER, "
+      "data_hora TEXT, data_hora_inclusao TEXT, data_hora_alteracao TEXT)");
 }
 
 void upgradeDb(Database database, int atual, int nova) async {

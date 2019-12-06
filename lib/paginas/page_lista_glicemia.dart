@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:kidney_app/database/glicemia_data.dart';
+import 'package:kidney_app/model/glicemia.dart';
 import 'package:kidney_app/model/pressao_arterial.dart';
 import 'package:kidney_app/database/pressao_arterial_data.dart';
+import 'package:kidney_app/paginas/page_glicemia.dart';
 import 'package:kidney_app/paginas/page_pressao_arterial.dart';
 import 'package:kidney_app/utils/utils.dart';
 
-class PageListaPressaoArterial extends StatefulWidget {
+class PageListaGlicemia extends StatefulWidget {
 
-  PageListaPressaoArterial({Key key}) : super(key: key);
+  PageListaGlicemia({Key key}) : super(key: key);
 
   @override
-  _PageListaPressaoArterial createState() => _PageListaPressaoArterial();
+  _PageListaGlicemia createState() => _PageListaGlicemia();
 }
 
 
-class _PageListaPressaoArterial extends State<PageListaPressaoArterial> {
-  _PageListaPressaoArterial({Key key});
+class _PageListaGlicemia extends State<PageListaGlicemia> {
+  _PageListaGlicemia({Key key});
 
-  Future<List<PressaoArterial>> _pressaoArterial;
+  Future<List<Glicemia>> _glicemia;
 
   @override
   void initState() {
     super.initState();
-    _pressaoArterial = PressaoArterialDatabase.lista();
+    _glicemia = GlicemiaDatabase.lista();
   }
 
 
@@ -54,7 +57,7 @@ class _PageListaPressaoArterial extends State<PageListaPressaoArterial> {
                   ),
                   Container(
                     height: 540,
-                    child: listaPressaoArterial()
+                    child: listaGlicemia()
                   ),
                 ]
             ),
@@ -62,7 +65,7 @@ class _PageListaPressaoArterial extends State<PageListaPressaoArterial> {
           onPressed: (){
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => PagePressaoArterial()),
+              MaterialPageRoute(builder: (context) => PageGlicemia()),
             );
           },
           tooltip: 'Increment',
@@ -71,18 +74,18 @@ class _PageListaPressaoArterial extends State<PageListaPressaoArterial> {
     );
   }
 
-  Widget listaPressaoArterial() {
+  Widget listaGlicemia() {
     return FutureBuilder(
-      future: _pressaoArterial,
-      builder: (context, pressaoArterialSnap) {
+      future: _glicemia,
+      builder: (context, glicemiaSnap) {
         return ListView.builder(
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
-          itemCount: pressaoArterialSnap.data != null ? pressaoArterialSnap.data.length : 0,
+          itemCount: glicemiaSnap.data != null ? glicemiaSnap.data.length : 0,
           itemBuilder: (context, index) {
 
-            final List<PressaoArterial> item = pressaoArterialSnap.data;
-            final PressaoArterial linha = item[index];
+            final List<Glicemia> item = glicemiaSnap.data;
+            final Glicemia linha = item[index];
             return ListTile(
               title: Column(
                 children: <Widget>[
@@ -90,7 +93,7 @@ class _PageListaPressaoArterial extends State<PageListaPressaoArterial> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(Utils.formataDataHora(linha.dataHora)),
-                      Text(Utils.formataPressao(linha.sistolica, linha.diastolica)),
+                      Text(Utils.formataGlicemia(linha.indiceGlicemico)),
                     ],
                   ),
                   Divider()
@@ -100,7 +103,7 @@ class _PageListaPressaoArterial extends State<PageListaPressaoArterial> {
                 print(item[index]);
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => PagePressaoArterial(pressaoArterial: item[index],))
+                    MaterialPageRoute(builder: (context) => PageGlicemia(glicemia: item[index],))
                 );
               },
             );
