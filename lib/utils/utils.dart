@@ -23,6 +23,14 @@ class Utils {
         (hora.minute < 10 ? '0' + hora.minute.toString() : hora.minute.toString());
   }
 
+  static DateTime dataHora (DateTime data, TimeOfDay hora ) {
+    String dataString = data.toIso8601String();
+    String horaString = hora.toString();
+    String dataRetorno = dataString.substring(0, 11) +
+        horaString.substring(10, 15) + ':00.000000';
+    return DateTime.parse(dataRetorno);
+  }
+
   int calculaIndice(int id, List lista) {
     for (int i=0;i < lista.length; i++)
       if (lista[i].id == id)

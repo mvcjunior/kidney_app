@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kidney_app/utils/utils.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:kidney_app/model/pressao_arterial.dart';
+import 'package:kidney_app/database/pressao_arterial_data.dart';
 
 
 class PagePressaoArterial extends StatefulWidget {
-
-  PagePressaoArterial({Key key}) : super(key: key);
+  final PressaoArterial pressaoArterial;
+  PagePressaoArterial({this.pressaoArterial, Key key}) : super(key: key);
 
   @override
   _PagePressaoArterial createState() => _PagePressaoArterial();
@@ -14,8 +16,9 @@ class PagePressaoArterial extends StatefulWidget {
 
 
 class _PagePressaoArterial extends State<PagePressaoArterial> {
+  final PressaoArterial pressaoArterial;
 
-  _PagePressaoArterial({Key key});
+  _PagePressaoArterial({this.pressaoArterial, Key key});
 
   final _formKey = GlobalKey<FormState>();
   final horaController = TextEditingController();
@@ -141,6 +144,11 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
                           child: Text('Incluir'),
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
+                              PressaoArterialDatabase.insert(PressaoArterial(
+                                dataHora: Utils.dataHora(_dataInfo, _horaInfo),
+                                diastolica: int.parse(diastolicaController.text),
+                                sistolica: int.parse(sistolicaController.text),
+                              ));
                               Navigator.pop(context);
                             }
                           },
