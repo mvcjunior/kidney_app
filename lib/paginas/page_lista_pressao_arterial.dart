@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kidney_app/model/pressao_arterial.dart';
 import 'package:kidney_app/database/pressao_arterial_data.dart';
 import 'package:kidney_app/paginas/page_pressao_arterial.dart';
+import 'package:kidney_app/utils/utils.dart';
 
 class PageListaPressaoArterial extends StatefulWidget {
 
@@ -29,7 +30,7 @@ class _PageListaPressaoArterial extends State<PageListaPressaoArterial> {
         body:  Column(
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    padding: EdgeInsets.fromLTRB(10, 30, 0, 0),
                     alignment: Alignment.centerLeft,
                     child: IconButton(
                       icon: const Icon(Icons.close),
@@ -38,32 +39,11 @@ class _PageListaPressaoArterial extends State<PageListaPressaoArterial> {
                       },
                     ),
                   ),
-                  FutureBuilder(
-                    future: _pressaoArterial,
-                    builder: (context, pressaoArterialSnap) {
-                      return ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        itemCount: pressaoArterialSnap.data != null ? pressaoArterialSnap.data.length : 0,
-                        itemBuilder: (context, index) {
-
-                          final List<PressaoArterial> item = pressaoArterialSnap.data;
-                          final PressaoArterial linha = item[index];
-                          return ListTile(
-                            title: Text('$linha.dataHora.toIso8601String() $linha.diastolica / $item[index].sistolica '),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => PagePressaoArterial(pressaoArterial: item[index],))
-                              );
-                            },
-                          );
-                        },
-                      );
-                    },
-                  )
+                  Container(
+                    height: 600,
+                    child: listaPressaoArterial()
+                  ),
                 ]
-
             ),
         floatingActionButton: FloatingActionButton(
           onPressed: (){
@@ -77,4 +57,39 @@ class _PageListaPressaoArterial extends State<PageListaPressaoArterial> {
         )
     );
   }
+
+  Widget listaPressaoArterial() {
+    return FutureBuilder(
+      future: _pressaoArterial,
+      builder: (context, pressaoArterialSnap) {
+        return ListView.builder(
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          itemCount: pressaoArterialSnap.data != null ? pressaoArterialSnap.data.length : 0,
+          itemBuilder: (context, index) {
+
+            final List<PressaoArterial> item = pressaoArterialSnap.data;
+            final PressaoArterial linha = item[index];
+            return ListTile(
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(Utils.formataDataHora(linha.dataHora)),
+                  Text(Utils.formataPressao(linha.sistolica, linha.diastolica)),
+                ],
+              ),
+              onTap: () {
+                print(item[index]);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PagePressaoArterial(pressaoArterial: item[index],))
+                );
+              },
+            );
+          },
+        );
+      },
+    );
+  }
+
 }

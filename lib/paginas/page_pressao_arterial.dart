@@ -11,7 +11,7 @@ class PagePressaoArterial extends StatefulWidget {
   PagePressaoArterial({this.pressaoArterial, Key key}) : super(key: key);
 
   @override
-  _PagePressaoArterial createState() => _PagePressaoArterial();
+  _PagePressaoArterial createState() => _PagePressaoArterial(pressaoArterial: this.pressaoArterial);
 }
 
 
@@ -33,7 +33,14 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
   @override
   void initState() {
     super.initState();
+    print(pressaoArterial);
+    if (pressaoArterial != null && pressaoArterial.id != null) {
+      _dataInfo = pressaoArterial.dataHora;
+      _horaInfo = TimeOfDay.fromDateTime(pressaoArterial.dataHora);
+      sistolicaController.text = pressaoArterial.sistolica.toString();
+      diastolicaController.text = pressaoArterial.diastolica.toString();
 
+    }
   }
 
   Widget build(BuildContext context) {
@@ -141,7 +148,7 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
                       Container(
                         padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
                         child: RaisedButton(
-                          child: Text('Incluir'),
+                          child: Text(pressaoArterial != null ? 'Salvar' : 'Incluir'),
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
                               PressaoArterialDatabase.insert(PressaoArterial(

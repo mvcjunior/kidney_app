@@ -50,6 +50,8 @@ class PressaoArterialDatabase {
   }
 
   Future<void> altera(PressaoArterial pressaoArterial) async {
+
+    base[pressaoArterial.id] = pressaoArterial;
     final db = await database;
 
     await db.update(

@@ -23,6 +23,19 @@ class Utils {
         (hora.minute < 10 ? '0' + hora.minute.toString() : hora.minute.toString());
   }
 
+  static String formataDataHora (DateTime dataHora ) {
+    return numero(dataHora.day) + BARRA + numero(dataHora.month) + BARRA + dataHora.year.toString() +
+      ' ' + numero(dataHora.hour) + DOIS_PONTOS + numero(dataHora.minute);
+  }
+
+  static String formataPressao (int sistolica, int diastolica ) {
+    return sistolica.toString() + ' / ' + diastolica.toString() + ' mmHg';
+  }
+
+  static String numero(int numero) {
+    return numero > 9 ? numero.toString() : '0' + numero.toString();
+  }
+
   static DateTime dataHora (DateTime data, TimeOfDay hora ) {
     String dataString = data.toIso8601String();
     String horaString = hora.toString();
