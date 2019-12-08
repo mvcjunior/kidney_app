@@ -1,7 +1,6 @@
 import 'dart:async';
-import 'package:kidney_app/model/glicemia.dart';
 import 'package:kidney_app/model/medicacao.dart';
-import 'package:kidney_app/model/pressao_arterial.dart';
+import 'package:kidney_app/utils/notificacao.dart';
 
 import 'database.dart';
 import 'package:sqflite/sqflite.dart';
@@ -11,14 +10,15 @@ class MedicacaoDatabase {
   static final List<Medicacao> base = List();
 
   static Future<void> insert(Medicacao medicacao) async {
-    base.add(Medicacao(id: base.length+1,
+    Medicacao medicacaoNew = Medicacao(id: base.length+1,
         nome: medicacao.nome,
         quantidade: medicacao.quantidade,
-        unidade: medicacao.unidade,
         hora: medicacao.hora,
         dataHoraAlteracao: DateTime.now(),
-        dataHoraInclusao: DateTime.now()));
+        dataHoraInclusao: DateTime.now());
 
+    base.add(medicacaoNew);
+    NotificacaoDiaria().iniciar(medicacaoNew);
  /*   final Database db = await database;
 
     await db.insert(
@@ -53,9 +53,9 @@ class MedicacaoDatabase {
     });*/
   }
 
-  Future<void> altera(Medicacao medicacao) async {
+  static Future<void> altera(Medicacao medicacao) async {
 
-    base[medicacao.id] = medicacao;
+    base[medicacao.id-1] = medicacao;
     final db = await database;
 
     await db.update(

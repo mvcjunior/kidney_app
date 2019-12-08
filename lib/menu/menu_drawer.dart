@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kidney_app/paginas/page_lista_glicemia.dart';
+import 'package:kidney_app/paginas/page_lista_medicacao.dart';
 import 'package:kidney_app/paginas/page_perfil.dart';
 import 'package:kidney_app/paginas/page_lista_pressao_arterial.dart';
 
@@ -37,9 +38,9 @@ class MenuDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('Alarmes'),
+            title: Text('Alarmes Medicação'),
             onTap: () {
-              Navigator.of(context).push(_createRouteOne());
+              Navigator.of(context).push(_createRoutePageMedicacao());
             },
           ),
           ListTile(
@@ -94,6 +95,19 @@ class MenuDrawer extends StatelessWidget {
       },
     );
   }
+
+  Route _createRoutePageMedicacao() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => PageListaMedicacao(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
+
 
   Route _createRouteOne() {
     return PageRouteBuilder(
