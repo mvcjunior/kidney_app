@@ -61,65 +61,82 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.fromLTRB(40, 30 , 40, 0),
+                        padding: EdgeInsets.fromLTRB(60, 30 , 60, 30),
                         alignment: Alignment.center,
                         child: Column(
                           children: <Widget>[
-                            MaterialButton(
-                              child: Row(
-                                children: <Widget>[
-                                  Icon(Icons.calendar_today, size: 28),
-                                  Text(' ${Utils.formataData(_dataInfo)}',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.normal
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                SizedBox(
+                                  width: 160,
+                                  child: MaterialButton(
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: <Widget>[
+                                        Icon(Icons.calendar_today, size: 26),
+                                        Text(' ${Utils.formataData(_dataInfo)}',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.normal
+                                          ),
+                                        ),
+                                      ],
                                     ),
+                                    onPressed: () async {
+                                      final dtPick = await showDatePicker(
+                                          context: context,
+                                          initialDate: _dataInfo,
+                                          firstDate: DateTime(2010),
+                                          lastDate: DateTime(2100)
+                                      );
+                                      if (dtPick != null && dtPick != _dataInfo) {
+                                        setState(() {
+                                          _dataInfo = dtPick;
+                                        });
+                                      }
+                                    },
                                   ),
-                                ],
-                              ),
-                              onPressed: () async {
-                                final dtPick = await showDatePicker(
-                                    context: context,
-                                    initialDate: _dataInfo,
-                                    firstDate: DateTime(2010),
-                                    lastDate: DateTime(2100)
-                                );
-                                if (dtPick != null && dtPick != _dataInfo) {
-                                  setState(() {
-                                    _dataInfo = dtPick;
-                                  });
-                                }
-                              },
+
+                                ),
+                                SizedBox(
+                                  width: 108,
+                                  child: MaterialButton(
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: <Widget>[
+                                        Icon(Icons.access_time, size: 26),
+                                        Text(' ${Utils.formataHora(_horaInfo)}',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.normal
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    onPressed: () async {
+                                      TimeOfDay hrPick = await showTimePicker(
+                                        context: context,
+                                        initialTime: _horaInfo,
+                                      );
+                                      if (hrPick != null && hrPick != _horaInfo) {
+                                        setState(() {
+                                          _horaInfo = hrPick;
+                                        });
+                                      }
+                                    },
+                                  ),
+                                )
+                              ],
                             ),
-                            MaterialButton(
-                              child: Row(
-                                children: <Widget>[
-                                  Icon(Icons.access_time, size: 28),
-                                  Text(' ${Utils.formataHora(_horaInfo)}',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.normal
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              onPressed: () async {
-                                TimeOfDay hrPick = await showTimePicker(
-                                  context: context,
-                                  initialTime: _horaInfo,
-                                );
-                                if (hrPick != null && hrPick != _horaInfo) {
-                                  setState(() {
-                                    _horaInfo = hrPick;
-                                  });
-                                }
-                              },
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                             ),
                             Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   SizedBox(
-                                    width: 120,
+                                    width: 100,
                                     child: TextFormField(
                                       keyboardType: TextInputType.number,
                                       controller: sistolicaController,
@@ -139,16 +156,27 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
                                       },
                                     ),
                                   ),
-                                  Text('/'),
+                                  Text(
+                                      '/',
+                                    style: TextStyle(
+                                      fontSize: 18
+                                    ),
+                                  ),
                                   SizedBox(
-                                    width: 120,
+                                    width: 100,
                                     child: TextFormField(
                                       keyboardType: TextInputType.number,
                                       controller: diastolicaController,
                                       decoration: InputDecoration(
                                         contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                                           labelText: 'Diastólica',
-                                        suffixText: 'mmhg'
+                                        suffixText: 'mmhg',
+                                          labelStyle: TextStyle(
+                                            fontSize: 15
+                                          ),
+                                          suffixStyle: TextStyle(
+                                              fontSize: 10,
+                                          )
                                       ),
                                       validator: (diastolica) {
                                         if (diastolica.isEmpty) {
@@ -164,20 +192,40 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                        child: RaisedButton(
-                          child: Text(pressaoArterial != null ? 'Salvar' : 'Incluir'),
-                          onPressed: () {
-                            if (_formKey.currentState.validate()) {
-                              PressaoArterialDatabase.insert(PressaoArterial(
-                                dataHora: Utils.dataHora(_dataInfo, _horaInfo),
-                                diastolica: int.parse(diastolicaController.text),
-                                sistolica: int.parse(sistolicaController.text),
-                              ));
-                              Navigator.pop(context);
-                            }
-                          },
-                        ),
+                        padding: EdgeInsets.fromLTRB(60, 20, 60, 0),
+                        child: Row(
+                          mainAxisAlignment: pressaoArterial != null ? MainAxisAlignment.spaceBetween : MainAxisAlignment.center,
+                          children: <Widget>[
+                            RaisedButton(
+                              child: Text(pressaoArterial != null ? 'Salvar' : 'Incluir'),
+                              onPressed: () {
+                                if (_formKey.currentState.validate()) {
+                                  PressaoArterialDatabase.insert(PressaoArterial(
+                                    dataHora: Utils.dataHora(_dataInfo, _horaInfo),
+                                    diastolica: int.parse(diastolicaController.text),
+                                    sistolica: int.parse(sistolicaController.text),
+                                  ));
+                                  Navigator.pop(context);
+                                }
+                              },
+                            ),
+                            pressaoArterial != null ?
+                            RaisedButton(
+                              child: Text('Excluir'),
+                              onPressed: () {
+                                if (_formKey.currentState.validate()) {
+                                  PressaoArterialDatabase.insert(PressaoArterial(
+                                    dataHora: Utils.dataHora(_dataInfo, _horaInfo),
+                                    diastolica: int.parse(diastolicaController.text),
+                                    sistolica: int.parse(sistolicaController.text),
+                                  ));
+                                  Navigator.pop(context);
+                                }
+                              },
+                            ) :
+                                Center()
+                          ],
+                        )
                       )
                     ],
                 )
