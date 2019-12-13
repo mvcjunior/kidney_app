@@ -32,25 +32,27 @@ class _MenuBottom extends State<MenuBottom> {
     return BottomNavigationBar(
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.list),
-          title: Text('Lançamentos'),
+          icon: Icon(Icons.calendar_today),
+          title: Text('Agenda'),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.add_to_home_screen),
-          title: Text('Resumo'),
+          icon: Icon(Icons.access_time),
+          title: Text('Medicação'),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.insert_chart),
-          title: Text('Gráfico'),
+          icon: Icon(Icons.accessibility_new),
+          title: Text('Imunosupressores'),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.credit_card),
-          title: Text('Crédito'),
+          icon: Icon(Icons.help),
+          title: Text('Dúvidas'),
         ),
       ],
       currentIndex: _selectedIndex,
       showUnselectedLabels: true,
-      unselectedItemColor: Colors.blue,
+      unselectedItemColor: Colors.green[900],
+      backgroundColor: Colors.green[900],
+      elevation: 10,
       selectedItemColor: Colors.amber[800],
       onTap: _onItemTapped,
     );

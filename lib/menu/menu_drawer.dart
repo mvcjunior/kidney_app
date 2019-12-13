@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kidney_app/paginas/page_lista_agenda.dart';
 import 'package:kidney_app/paginas/page_lista_glicemia.dart';
 import 'package:kidney_app/paginas/page_lista_medicacao.dart';
 import 'package:kidney_app/paginas/page_perfil.dart';
@@ -22,7 +23,7 @@ class MenuDrawer extends StatelessWidget {
             child: Text('Informações do Paciente'),
             margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
             decoration: BoxDecoration(
-              color: Colors.lightGreenAccent,
+              color: Colors.green[800],
             ),
           ),
           ListTile(
@@ -34,13 +35,13 @@ class MenuDrawer extends StatelessWidget {
           ListTile(
             title: Text('Agenda'),
             onTap: () {
-              Navigator.of(context).push(_createRouteOne());
+              Navigator.of(context).push(_createRoutePageMedicacao());
             },
           ),
           ListTile(
             title: Text('Alarmes Medicação'),
             onTap: () {
-              Navigator.of(context).push(_createRoutePageMedicacao());
+              Navigator.of(context).push(_createRoutePageAgenda());
             },
           ),
           ListTile(
@@ -96,9 +97,21 @@ class MenuDrawer extends StatelessWidget {
     );
   }
 
-  Route _createRoutePageMedicacao() {
+  Route _createRoutePageAgenda() {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => PageListaMedicacao(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
+
+  Route _createRoutePageMedicacao() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => PageListaAgenda(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         return SlideTransition(
           position: animation.drive(tween),

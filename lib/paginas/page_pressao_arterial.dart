@@ -33,7 +33,6 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
   @override
   void initState() {
     super.initState();
-    print(pressaoArterial);
     if (pressaoArterial != null && pressaoArterial.id != null) {
       _dataInfo = pressaoArterial.dataHora;
       _horaInfo = TimeOfDay.fromDateTime(pressaoArterial.dataHora);
@@ -116,32 +115,51 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
                                 }
                               },
                             ),
-                            TextFormField(
-                              keyboardType: TextInputType.number,
-                              controller: sistolicaController,
-                              decoration: InputDecoration(
-                                labelText: 'Sistólica',
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  SizedBox(
+                                    width: 120,
+                                    child: TextFormField(
+                                      keyboardType: TextInputType.number,
+                                      controller: sistolicaController,
+                                      decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                          labelText: 'Sistólica',
+                                          suffixText: 'mmhg',
+                                          suffixStyle: TextStyle(
+                                            fontSize: 10
+                                          )
+                                      ),
+                                      validator: (sistolica) {
+                                        if (sistolica.isEmpty) {
+                                          return 'Preencha a pressão sistólica';
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                  ),
+                                  Text('/'),
+                                  SizedBox(
+                                    width: 120,
+                                    child: TextFormField(
+                                      keyboardType: TextInputType.number,
+                                      controller: diastolicaController,
+                                      decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                          labelText: 'Diastólica',
+                                        suffixText: 'mmhg'
+                                      ),
+                                      validator: (diastolica) {
+                                        if (diastolica.isEmpty) {
+                                          return 'Preencha a pressão diastólica';
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                  ),
+                                ],
                               ),
-                              validator: (sistolica) {
-                                if (sistolica.isEmpty) {
-                                  return 'Preencha a pressão sistólica';
-                                }
-                                return null;
-                              },
-                            ),
-                            TextFormField(
-                              keyboardType: TextInputType.number,
-                              controller: diastolicaController,
-                              decoration: InputDecoration(
-                                labelText: 'Diastólica',
-                              ),
-                              validator: (diastolica) {
-                                if (diastolica.isEmpty) {
-                                  return 'Preencha a pressão diastólica';
-                                }
-                                return null;
-                              },
-                            ),
                           ],
                         ),
                       ),
