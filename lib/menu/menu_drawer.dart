@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kidney_app/paginas/page_lista_agenda.dart';
 import 'package:kidney_app/paginas/page_lista_glicemia.dart';
 import 'package:kidney_app/paginas/page_lista_medicacao.dart';
-import 'package:kidney_app/paginas/page_perfil.dart';
+import 'package:kidney_app/paginas/perfil/page_perfil.dart';
 import 'package:kidney_app/paginas/page_lista_pressao_arterial.dart';
 
 class MenuDrawer extends StatelessWidget {
