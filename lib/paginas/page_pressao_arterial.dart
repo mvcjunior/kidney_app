@@ -140,13 +140,28 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
                                     child: TextFormField(
                                       keyboardType: TextInputType.number,
                                       controller: sistolicaController,
+                                      cursorColor: Colors.green[500],
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        decorationColor: Colors.green[500],
+                                      ),
                                       decoration: InputDecoration(
-                                          contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                          labelText: 'Sistólica',
-                                          suffixText: 'mmhg',
-                                          suffixStyle: TextStyle(
-                                            fontSize: 10
-                                          )
+                                        focusColor: Colors.green[500],
+                                        contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                                        hoverColor: Colors.green[500],
+                                        suffixText: 'mmhg',
+                                        suffixStyle: TextStyle(
+                                          fontSize: 10,
+                                        ),
+                                        hintStyle: TextStyle(
+                                          color: Colors.green[500],
+                                        ),
+                                        labelText: 'Sistólica',
+                                        labelStyle: TextStyle(
+                                            color: Colors.green[500],
+                                            fontSize: 18
+                                        ),
                                       ),
                                       validator: (sistolica) {
                                         if (sistolica.isEmpty) {
@@ -168,15 +183,15 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
                                       keyboardType: TextInputType.number,
                                       controller: diastolicaController,
                                       decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                          labelText: 'Diastólica',
+                                        contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                                         suffixText: 'mmhg',
-                                          labelStyle: TextStyle(
+                                        suffixStyle: TextStyle(
+                                          fontSize: 10,
+                                        ),
+                                        labelText: 'Diastólica',
+                                        labelStyle: TextStyle(
                                             fontSize: 15
-                                          ),
-                                          suffixStyle: TextStyle(
-                                              fontSize: 10,
-                                          )
+                                        ),
                                       ),
                                       validator: (diastolica) {
                                         if (diastolica.isEmpty) {
