@@ -138,6 +138,7 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
                                   SizedBox(
                                     width: 100,
                                     child: TextFormField(
+                                      autofocus: true,
                                       keyboardType: TextInputType.number,
                                       controller: sistolicaController,
                                       cursorColor: Colors.green[500],
@@ -180,6 +181,7 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
                                   SizedBox(
                                     width: 100,
                                     child: TextFormField(
+                                      autofocus: true,
                                       keyboardType: TextInputType.number,
                                       controller: diastolicaController,
                                       decoration: InputDecoration(
@@ -220,7 +222,7 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
                                     diastolica: int.parse(diastolicaController.text),
                                     sistolica: int.parse(sistolicaController.text),
                                   ));
-                                  Navigator.pop(context);
+                                  Navigator.pop(context, true);
                                 }
                               },
                             ),
@@ -234,7 +236,7 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
                                     diastolica: int.parse(diastolicaController.text),
                                     sistolica: int.parse(sistolicaController.text),
                                   ));
-                                  Navigator.pop(context);
+                                  Navigator.pop(context, true);
                                 }
                               },
                             ) :

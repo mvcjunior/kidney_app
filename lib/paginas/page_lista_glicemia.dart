@@ -104,7 +104,11 @@ class _PageListaGlicemia extends State<PageListaGlicemia> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => PageGlicemia(glicemia: item[index],))
-                );
+                ).then((alterado) {
+                  setState(() {
+                    _glicemia = GlicemiaDatabase.lista();
+                  });
+                });;
               },
             );
           },

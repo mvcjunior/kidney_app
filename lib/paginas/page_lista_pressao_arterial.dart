@@ -63,9 +63,10 @@ class _PageListaPressaoArterial extends State<PageListaPressaoArterial> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => PagePressaoArterial()),
-            );
-            setState(() {
-              _pressaoArterial = PressaoArterialDatabase.lista();
+            ).then((alterado) {
+              setState(() {
+                _pressaoArterial = PressaoArterialDatabase.lista();
+              });
             });
           },
           tooltip: 'Increment',

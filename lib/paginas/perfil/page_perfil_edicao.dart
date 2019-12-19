@@ -8,13 +8,13 @@ class PagePerfilEdicao extends StatefulWidget {
   final TextEditingController formato;
   final String cabecalho;
   final String valor;
-  final String campo;
+
   PagePerfilEdicao({this.formato, this.cabecalho, this.valor,
-    this.campo, Key key}) : super(key: key);
+  Key key}) : super(key: key);
 
   @override
   _PagePerfilEdicao createState() => _PagePerfilEdicao(formato: this.formato,
-      cabecalho: this.cabecalho, valor: this.valor, campo: this.campo );
+      cabecalho: this.cabecalho, valor: this.valor );
 }
 
 
@@ -22,20 +22,29 @@ class _PagePerfilEdicao extends State<PagePerfilEdicao> {
   final TextEditingController formato;
   final String cabecalho;
   final String valor;
-  final String campo;
 
-  _PagePerfilEdicao({this.formato, this.cabecalho, this.valor, this.campo, Key key});
+  _PagePerfilEdicao({this.formato, this.cabecalho, this.valor, Key key});
+
+  final _formKey = GlobalKey<FormState>();
+
+  final List titulos = [
+    'Informe seu CPF',
+    'Informe seu NOME',
+    'Informe sua DATA NASCIMENTO',
+    'Informe seu EMAIL de contato',
+    'Informe seu TELEFONE de contato',
+  ];
+  int ocorrencia;
 
   TextInputType tipoTeclado;
 
   @override
   void initState() {
     super.initState();
-    print(this.valor);
-    print(this.formato);
+    ocorrencia = obtemOcorrencia(cabecalho);
     formato.text = valor;
-    if (campo == Constantes.TELEFONE || campo == Constantes.CPF ||
-      campo == Constantes.DATA_NASCIMENTO)
+    if (cabecalho == Constantes.TELEFONE || cabecalho == Constantes.CPF ||
+        cabecalho == Constantes.DATA_NASCIMENTO)
       tipoTeclado = TextInputType.number;
     else
       tipoTeclado = TextInputType.text;
@@ -58,36 +67,56 @@ class _PagePerfilEdicao extends State<PagePerfilEdicao> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(20, 0 , 0, 20),
-                  alignment: Alignment.center,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-
-                      border: UnderlineInputBorder(
-                        borderSide: BorderSide.none
-                      )
+                  padding: EdgeInsets.fromLTRB(10, 40 , 40, 30),
+                  alignment: Alignment.bottomRight,
+                  child: Text(titulos[ocorrencia],
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w900
                     ),
-                    autofocus: true,
-                    keyboardType: tipoTeclado,
-                    controller: this.formato,
-                    textAlign: TextAlign.center,
-                    validator: (valor) {
-                      if (valor.isEmpty) {
-                        return 'Preencha a informação solicitada';
-                      }
-                      return null;
-                    },
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(20, 0 , 0, 20),
+                  padding: EdgeInsets.fromLTRB(20, 30 , 0, 20),
+                  alignment: Alignment.centerLeft,
+                  child: Form(
+                    key: _formKey,
+                    child: TextFormField(
+                      style: TextStyle(
+                        fontSize: 22
+                      ),
+                      decoration: InputDecoration(
+                          border: UnderlineInputBorder(
+                              borderSide: BorderSide.none
+                          )
+                      ),
+                      autofocus: true,
+                      textCapitalization: TextCapitalization.words,
+                      keyboardType: tipoTeclado,
+                      controller: this.formato,
+                      textAlign: TextAlign.start,
+                      validator: (valor) {
+                        if (valor.isEmpty) {
+                          return 'Preencha a informação solicitada';
+                        }
+                        return null;
+                      },
+                    ),
+                  )
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(20, 80 , 20, 20),
                   alignment: Alignment.center,
-                  child: OutlineButton(
+                  child: MaterialButton(
+                    minWidth: 400,
+                    shape: OutlineInputBorder(),
                     onPressed: (){
-                      _salvaInformacao(this.campo, this.formato.text);
-                      Navigator.pop(context);
+                      if (_formKey.currentState.validate()) {
+                        _salvaInformacao(this.cabecalho, this.formato.text);
+                        Navigator.pop(context, true);
+                      }
                     },
-                    child: Text('Salvar'),
+                    child: Text('Atualizar'),
                   )
                 ),
               ],
@@ -99,6 +128,18 @@ class _PagePerfilEdicao extends State<PagePerfilEdicao> {
   _salvaInformacao(String literal, String valor ) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(literal, valor);
+
+  }
+
+  static int obtemOcorrencia (String cabecalho) {
+
+    switch(cabecalho) {
+      case 'cpf': return 0;
+      case 'nome': return 1;
+      case 'data nascimento': return 2;
+      case 'email': return 3;
+      case 'telefone': return 4;
+    }
 
   }
 

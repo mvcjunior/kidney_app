@@ -132,23 +132,41 @@ class _PageGlicemia extends State<PageGlicemia> {
                     ),
                     Container(
                       padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                      child: RaisedButton(
-                        child: Text(glicemia != null ? 'Salvar' : 'Incluir'),
-                        onPressed: () {
-                          if (_formKey.currentState.validate()) {
-                            GlicemiaDatabase.insert(Glicemia(
-                              dataHora: Utils.dataHora(_dataInfo, _horaInfo),
-                              indiceGlicemico: int.parse(glicemiaController.text),
-                            ));
-                            Navigator.pop(context);
-                          }
-                        },
-                      ),
+                      child: Row(
+                        mainAxisAlignment: glicemia != null ? MainAxisAlignment.spaceBetween : MainAxisAlignment.center,
+                        children: <Widget>[
+                          RaisedButton(
+                            child: Text(glicemia != null ? 'Salvar' : 'Incluir'),
+                            onPressed: () {
+                              if (_formKey.currentState.validate()) {
+                                GlicemiaDatabase.insert(Glicemia(
+                                  dataHora: Utils.dataHora(_dataInfo, _horaInfo),
+                                  indiceGlicemico: int.parse(glicemiaController.text),
+                                ));
+                                Navigator.pop(context, true);
+                              }
+                            },
+                          ),
+                          glicemia != null ?
+                          RaisedButton(
+                            child: Text('Excluir'),
+                              onPressed: () {
+                                if (_formKey.currentState.validate()) {
+                                  GlicemiaDatabase.insert(Glicemia(
+                                    dataHora: Utils.dataHora(_dataInfo, _horaInfo),
+                                    indiceGlicemico: int.parse(glicemiaController.text),
+                                  ));
+                                  Navigator.pop(context);
+                                }
+                              },
+                            ) :
+                          Center()
+                        ]
                     )
-                  ],
                 )
+              ]
             )
-        )
+        ))
     );
   }
 }

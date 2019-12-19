@@ -13,7 +13,7 @@ class PagePerfil extends StatefulWidget {
 }
 
 
-class _PagePerfil extends State<PagePerfil> {
+class _PagePerfil extends State<PagePerfil>  {
 
   _PagePerfil({Key key});
 
@@ -46,7 +46,7 @@ class _PagePerfil extends State<PagePerfil> {
       });
   }
 
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)  {
     return Scaffold(
         body: SingleChildScrollView(
             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -92,9 +92,13 @@ class _PagePerfil extends State<PagePerfil> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => PagePerfilEdicao(
-                cabecalho: cabecalho, valor: valor, campo: cabecalho, formato: formato,
+                cabecalho: cabecalho, valor: valor, formato: formato,
               )),
-            );
+            ).then((alterado) {
+              if (alterado) {
+                _loadPerfil();
+              }
+            });
           },
           child: Container(
             color: Colors.white,
