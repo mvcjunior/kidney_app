@@ -95,7 +95,7 @@ class _PagePerfil extends State<PagePerfil>  {
                 cabecalho: cabecalho, valor: valor, formato: formato,
               )),
             ).then((alterado) {
-              if (alterado) {
+              if (alterado != null && alterado) {
                 _loadPerfil();
               }
             });

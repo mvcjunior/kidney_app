@@ -23,7 +23,7 @@ class MenuDrawer extends StatelessWidget {
             child: Text('Informações do Paciente'),
             margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
             decoration: BoxDecoration(
-              color: Colors.green[800],
+              color: Colors.brown[500],
             ),
           ),
           ListTile(
@@ -35,13 +35,13 @@ class MenuDrawer extends StatelessWidget {
           ListTile(
             title: Text('Agenda'),
             onTap: () {
-              Navigator.of(context).push(_createRoutePageMedicacao());
+              Navigator.of(context).push(_createRoutePageAgenda());
             },
           ),
           ListTile(
-            title: Text('Alarmes Medicação'),
+            title: Text('Alarmes Medicações'),
             onTap: () {
-              Navigator.of(context).push(_createRoutePageAgenda());
+              Navigator.of(context).push(_createRoutePageMedicacao());
             },
           ),
           ListTile(
@@ -99,7 +99,7 @@ class MenuDrawer extends StatelessWidget {
 
   Route _createRoutePageAgenda() {
     return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => PageListaMedicacao(),
+      pageBuilder: (context, animation, secondaryAnimation) => PageListaAgenda(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         return SlideTransition(
           position: animation.drive(tween),
@@ -111,7 +111,7 @@ class MenuDrawer extends StatelessWidget {
 
   Route _createRoutePageMedicacao() {
     return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => PageListaAgenda(),
+      pageBuilder: (context, animation, secondaryAnimation) => PageListaMedicacao(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         return SlideTransition(
           position: animation.drive(tween),

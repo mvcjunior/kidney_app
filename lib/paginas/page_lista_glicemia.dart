@@ -66,7 +66,13 @@ class _PageListaGlicemia extends State<PageListaGlicemia> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => PageGlicemia()),
-            );
+            ).then((alterado) {
+              if (alterado != null && alterado) {
+                setState(() {
+                  _glicemia = GlicemiaDatabase.lista();
+                });
+              }
+            });
           },
           tooltip: 'Increment',
           child: Icon(Icons.add),
@@ -100,15 +106,16 @@ class _PageListaGlicemia extends State<PageListaGlicemia> {
                 ],
               ),
               onTap: () {
-                print(item[index]);
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => PageGlicemia(glicemia: item[index],))
+                    MaterialPageRoute(builder: (context) => PageGlicemia(glicemia: linha,))
                 ).then((alterado) {
-                  setState(() {
-                    _glicemia = GlicemiaDatabase.lista();
-                  });
-                });;
+                  if (alterado != null && alterado) {
+                    setState(() {
+                      _glicemia = GlicemiaDatabase.lista();
+                    });
+                  }
+                });
               },
             );
           },

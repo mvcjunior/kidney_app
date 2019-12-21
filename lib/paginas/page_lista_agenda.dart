@@ -51,7 +51,6 @@ class _PageListaAgenda extends State<PageListaAgenda> {
                 ]
             ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.green[900],
           onPressed: (){
             Navigator.push(
               context,

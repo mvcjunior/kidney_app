@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:kidney_app/menu/menu_bottom.dart';
-import 'package:kidney_app/menu/menu_drawer.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rxdart/subjects.dart';
-import 'package:kidney_app/paginas/page_medicacao.dart';
 import 'package:kidney_app/utils/received_notification.dart';
+import 'package:kidney_app/paginas/home.dart';
+import 'package:splashscreen/splashscreen.dart';
+
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 FlutterLocalNotificationsPlugin();
@@ -47,134 +46,71 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      color: Colors.brown[600],
+      theme: ThemeData(
+        buttonTheme: ButtonThemeData(
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Colors.brown[600]
+        )
+      ),
       title: 'Kidney App',
-      home: MyHomePage(title: 'Kidney App'),
+      home: _introScreen(context),
     );
   }
-}
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  Widget _introScreen(BuildContext context) {
 
- final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-
-  final MethodChannel platform =
-  MethodChannel('crossingthestreams.io/resourceResolver');
-
-  @override
-  void initState() {
-    super.initState();
-    didReceiveLocalNotificationSubject.stream
-        .listen((ReceivedNotification receivedNotification) async {
-      await showDialog(
-        context: context,
-        builder: (BuildContext context) => CupertinoAlertDialog(
-          title: receivedNotification.title != null
-              ? Text(receivedNotification.title)
-              : null,
-          content: receivedNotification.body != null
-              ? Text(receivedNotification.body)
-              : null,
-          actions: [
-            CupertinoDialogAction(
-              isDefaultAction: true,
-              child: Text('Ok'),
-              onPressed: () async {
-                Navigator.of(context, rootNavigator: true).pop();
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        PageMedicacao(),
+    return Stack(
+      children: <Widget>[
+        SplashScreen(
+          seconds: 5,
+          gradientBackground: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              Colors.brown,
+              Colors.brown[600]
+            ],
+          ),
+          navigateAfterSeconds: MyHomePage(title: 'Kidney App'),
+          loaderColor: Colors.transparent,
+        ),
+        Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                width: 200,
+                height: 200,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/kidney_color.png"),
+                    fit: BoxFit.fitWidth,
                   ),
-                );
-              },
-            )
-          ],
+                ),
+              ),
+              Text(
+                'kidney app 1.0.0',
+                style: TextStyle(
+                    color: Colors.black.withOpacity(0.6),
+                    decoration: TextDecoration.none,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.normal,
+                    fontSize: 15
+                ),
+              )
+            ],
+          )
         ),
-      );
-    });
-    selectNotificationSubject.stream.listen((String payload) async {
-      await Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => PageMedicacao()),
-      );
-    });
-  }
-
-  @override
-  void dispose() {
-    didReceiveLocalNotificationSubject.close();
-    selectNotificationSubject.close();
-    super.dispose();
-  }
-
-
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-        leading: Builder(
-            builder: (BuildContext context) {
-              return IconButton(
-                icon: const Icon(Icons.menu),
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                  },
-                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-              );
-            }
-        ),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-
-          ],
-        ),
-      ),
-      drawer: MenuDrawer(),
-      floatingActionButton: null,
-      bottomNavigationBar: MenuBottom(),// This trailing comma makes auto-formatting nicer for build methods.
+      ],
     );
   }
 }
+

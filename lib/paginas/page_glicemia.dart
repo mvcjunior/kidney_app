@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:kidney_app/database/glicemia_data.dart';
 import 'package:kidney_app/model/glicemia.dart';
 import 'package:kidney_app/utils/utils.dart';
-import 'package:flutter_masked_text/flutter_masked_text.dart';
 
 class PageGlicemia extends StatefulWidget {
   final Glicemia glicemia;
@@ -10,7 +9,7 @@ class PageGlicemia extends StatefulWidget {
   PageGlicemia({this.glicemia, Key key}) : super(key: key);
 
   @override
-  _PageGlicemia createState() => _PageGlicemia();
+  _PageGlicemia createState() => _PageGlicemia(glicemia: this.glicemia);
 }
 
 
@@ -120,8 +119,8 @@ class _PageGlicemia extends State<PageGlicemia> {
                             decoration: InputDecoration(
                               labelText: 'Glicemia',
                             ),
-                            validator: (sistolica) {
-                              if (sistolica.isEmpty) {
+                            validator: (glicemia) {
+                              if (glicemia.isEmpty) {
                                 return 'Preencha a glicemia';
                               }
                               return null;
@@ -131,36 +130,36 @@ class _PageGlicemia extends State<PageGlicemia> {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                      child: Row(
-                        mainAxisAlignment: glicemia != null ? MainAxisAlignment.spaceBetween : MainAxisAlignment.center,
-                        children: <Widget>[
-                          RaisedButton(
-                            child: Text(glicemia != null ? 'Salvar' : 'Incluir'),
-                            onPressed: () {
-                              if (_formKey.currentState.validate()) {
-                                GlicemiaDatabase.insert(Glicemia(
-                                  dataHora: Utils.dataHora(_dataInfo, _horaInfo),
-                                  indiceGlicemico: int.parse(glicemiaController.text),
-                                ));
-                                Navigator.pop(context, true);
-                              }
-                            },
-                          ),
-                          glicemia != null ?
-                          RaisedButton(
-                            child: Text('Excluir'),
+                        padding: EdgeInsets.fromLTRB(60, 20, 60, 0),
+                        child: Row(
+                          mainAxisAlignment: glicemia != null ? MainAxisAlignment.spaceBetween : MainAxisAlignment.center,
+                          children: <Widget>[
+                            RaisedButton(
+                              child: Text(glicemia != null ? 'Salvar' : 'Incluir'),
                               onPressed: () {
                                 if (_formKey.currentState.validate()) {
                                   GlicemiaDatabase.insert(Glicemia(
                                     dataHora: Utils.dataHora(_dataInfo, _horaInfo),
                                     indiceGlicemico: int.parse(glicemiaController.text),
                                   ));
-                                  Navigator.pop(context);
+                                  Navigator.pop(context, true);
                                 }
                               },
-                            ) :
-                          Center()
+                            ),
+                            glicemia != null ?
+                            RaisedButton(
+                              child: Text('Excluir'),
+                                onPressed: () {
+                                  if (_formKey.currentState.validate()) {
+                                    GlicemiaDatabase.insert(Glicemia(
+                                      dataHora: Utils.dataHora(_dataInfo, _horaInfo),
+                                      indiceGlicemico: int.parse(glicemiaController.text),
+                                    ));
+                                    Navigator.pop(context, true);
+                                  }
+                                },
+                              ) :
+                            Center()
                         ]
                     )
                 )
