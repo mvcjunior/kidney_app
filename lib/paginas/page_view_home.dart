@@ -27,7 +27,7 @@ class _PageViewHome extends State<PageViewHome> {
 
 
   Widget build(BuildContext context) {
-    return Center(
+   return Center(
       child: Column(
         // Column is also a layout widget. It takes a list of children and
         // arranges them vertically. By default, it sizes itself to fit its
@@ -44,6 +44,7 @@ class _PageViewHome extends State<PageViewHome> {
         // axis because Columns are vertical (the cross axis would be
         // horizontal).
         mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           Card(
             color: Colors.white,
@@ -59,11 +60,10 @@ class _PageViewHome extends State<PageViewHome> {
                   Text('4'),
                 ],
                 onPageChanged: (pagina) {
-                  print(pagina);
                   _pagina = pagina;
-                  // setState(() {
+                  setState(() {
 
-                  //});
+                  });
                 },
               ),
             ),
@@ -73,10 +73,9 @@ class _PageViewHome extends State<PageViewHome> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Icon(icone(0), size: 10),
-                Icon(icone(1), size: 10),
-                Icon(icone(2), size: 10),
-
+                icone(0),
+                icone(1),
+                icone(2),
               ],
             ),
           )
@@ -86,8 +85,11 @@ class _PageViewHome extends State<PageViewHome> {
 
   }
 
-  IconData icone (int pagina) {
-    return pagina != _pagina ? Icons.radio_button_unchecked : Icons.brightness_1;
+
+  Icon icone (int pagina) {
+    return pagina != _pagina ?
+          Icon(Icons.radio_button_unchecked, size: 10)
+        : Icon(Icons.brightness_1, size: 10);
   }
 
 
