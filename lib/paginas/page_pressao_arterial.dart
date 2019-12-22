@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kidney_app/utils/utils.dart';
+import 'package:kidney_app/utils/temas.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:kidney_app/model/pressao_arterial.dart';
 import 'package:kidney_app/database/pressao_arterial_data.dart';
@@ -23,8 +24,8 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
   final _formKey = GlobalKey<FormState>();
   final horaController = TextEditingController();
   final dataController = TextEditingController();
-  final diastolicaController = MaskedTextController(mask: '000');
-  final sistolicaController = MaskedTextController(mask: '000');
+  final diastolicaController = MaskedTextController(mask: '00');
+  final sistolicaController = MaskedTextController(mask: '00');
 
   DateTime _dataInfo = DateTime.now();
   TimeOfDay _horaInfo = TimeOfDay.now();
@@ -66,15 +67,20 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
                         child: Column(
                           children: <Widget>[
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 SizedBox(
-                                  width: 160,
+                                  width: 130,
                                   child: MaterialButton(
+                                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                    minWidth: 100,
+                                    shape: OutlineInputBorder(
+                                        borderSide: BorderSide.none
+                                    ),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      mainAxisAlignment: MainAxisAlignment.start,
                                       children: <Widget>[
-                                        Icon(Icons.calendar_today, size: 26),
+                                        Icon(Icons.calendar_today, size: 28),
                                         Text(' ${Utils.formataData(_dataInfo)}',
                                           style: TextStyle(
                                               fontSize: 18,
@@ -88,7 +94,10 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
                                           context: context,
                                           initialDate: _dataInfo,
                                           firstDate: DateTime(2010),
-                                          lastDate: DateTime(2100)
+                                          lastDate: DateTime(2100),
+                                          builder: (BuildContext context, Widget child) {
+                                            return Temas.dataHora(child);
+                                          },
                                       );
                                       if (dtPick != null && dtPick != _dataInfo) {
                                         setState(() {
@@ -100,10 +109,15 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
 
                                 ),
                                 SizedBox(
-                                  width: 108,
+                                  width: 85,
                                   child: MaterialButton(
+                                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                    minWidth: 85,
+                                    shape: OutlineInputBorder(
+                                        borderSide: BorderSide.none
+                                    ),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      mainAxisAlignment: MainAxisAlignment.start,
                                       children: <Widget>[
                                         Icon(Icons.access_time, size: 26),
                                         Text(' ${Utils.formataHora(_horaInfo)}',
@@ -118,6 +132,9 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
                                       TimeOfDay hrPick = await showTimePicker(
                                         context: context,
                                         initialTime: _horaInfo,
+                                        builder: (BuildContext context, Widget child) {
+                                          return Temas.dataHora(child);
+                                        },
                                       );
                                       if (hrPick != null && hrPick != _horaInfo) {
                                         setState(() {
@@ -141,28 +158,11 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
                                       autofocus: true,
                                       keyboardType: TextInputType.number,
                                       controller: sistolicaController,
-                                      cursorColor: Colors.green[500],
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        decorationColor: Colors.green[500],
-                                      ),
                                       decoration: InputDecoration(
-                                        focusColor: Colors.green[500],
                                         contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                                        hoverColor: Colors.green[500],
                                         suffixText: 'mmhg',
-                                        suffixStyle: TextStyle(
-                                          fontSize: 10,
-                                        ),
-                                        hintStyle: TextStyle(
-                                          color: Colors.green[500],
-                                        ),
                                         labelText: 'Sistólica',
-                                        labelStyle: TextStyle(
-                                            color: Colors.green[500],
-                                            fontSize: 18
-                                        ),
                                       ),
                                       validator: (sistolica) {
                                         if (sistolica.isEmpty) {
@@ -184,16 +184,11 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
                                       autofocus: true,
                                       keyboardType: TextInputType.number,
                                       controller: diastolicaController,
+                                      textAlign: TextAlign.center,
                                       decoration: InputDecoration(
                                         contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                                         suffixText: 'mmhg',
-                                        suffixStyle: TextStyle(
-                                          fontSize: 10,
-                                        ),
                                         labelText: 'Diastólica',
-                                        labelStyle: TextStyle(
-                                            fontSize: 15
-                                        ),
                                       ),
                                       validator: (diastolica) {
                                         if (diastolica.isEmpty) {

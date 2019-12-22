@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:kidney_app/utils/received_notification.dart';
+import 'package:kidney_app/utils/temas.dart';
 import 'package:kidney_app/paginas/home.dart';
 import 'package:splashscreen/splashscreen.dart';
 
@@ -52,13 +53,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       color: Colors.brown[600],
-      theme: ThemeData(
-        buttonTheme: ButtonThemeData(
-        ),
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: Colors.brown[600]
-        )
-      ),
+      theme: Temas.principal(),
       title: 'Kidney App',
       home: _introScreen(context),
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kidney_app/database/glicemia_data.dart';
 import 'package:kidney_app/model/glicemia.dart';
 import 'package:kidney_app/utils/utils.dart';
+import 'package:kidney_app/utils/temas.dart';
 
 class PageGlicemia extends StatefulWidget {
   final Glicemia glicemia;
@@ -64,6 +65,9 @@ class _PageGlicemia extends State<PageGlicemia> {
                       child: Column(
                         children: <Widget>[
                           MaterialButton(
+                            shape: OutlineInputBorder(
+                              borderSide: BorderSide.none
+                            ),
                             child: Row(
                               children: <Widget>[
                                 Icon(Icons.calendar_today, size: 28),
@@ -80,8 +84,11 @@ class _PageGlicemia extends State<PageGlicemia> {
                                   context: context,
                                   initialDate: _dataInfo,
                                   firstDate: DateTime(2010),
-                                  lastDate: DateTime(2100)
-                              );
+                                  lastDate: DateTime(2100),
+                                  builder: (BuildContext context, Widget child) {
+                                    return Temas.dataHora(child);
+                                  },
+                                );
                               if (dtPick != null && dtPick != _dataInfo) {
                                 setState(() {
                                   _dataInfo = dtPick;
@@ -90,6 +97,9 @@ class _PageGlicemia extends State<PageGlicemia> {
                             },
                           ),
                           MaterialButton(
+                            shape: OutlineInputBorder(
+                                borderSide: BorderSide.none
+                            ),
                             child: Row(
                               children: <Widget>[
                                 Icon(Icons.access_time, size: 28),
@@ -105,6 +115,9 @@ class _PageGlicemia extends State<PageGlicemia> {
                               TimeOfDay hrPick = await showTimePicker(
                                 context: context,
                                 initialTime: _horaInfo,
+                                builder: (BuildContext context, Widget child) {
+                                  return Temas.dataHora(child);
+                                },
                               );
                               if (hrPick != null && hrPick != _horaInfo) {
                                 setState(() {
@@ -116,8 +129,11 @@ class _PageGlicemia extends State<PageGlicemia> {
                           TextFormField(
                             keyboardType: TextInputType.number,
                             controller: glicemiaController,
+                            textAlign: TextAlign.center,
                             decoration: InputDecoration(
-                              labelText: 'Glicemia',
+                                contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                                labelText: 'Glicemia',
+                                suffixText: 'mg/dl'
                             ),
                             validator: (glicemia) {
                               if (glicemia.isEmpty) {

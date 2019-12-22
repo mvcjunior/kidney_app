@@ -25,7 +25,7 @@ class NotificacaoDiaria {
         'your other channel id',
         'your other channel name',
         'your other channel description',
-        icon: 'secondary_icon',
+        icon: 'kidney_black_white',
         sound: 'slow_spring_board',
         largeIcon: 'sample_large_icon',
         largeIconBitmapSource: BitmapSource.Drawable,
@@ -59,6 +59,7 @@ class NotificacaoDiaria {
     await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
     print(notificationAppLaunchDetails.didNotificationLaunchApp);
     print(notificationAppLaunchDetails.payload);
+    print(notificationAppLaunchDetails.toString());
 
   }
 }

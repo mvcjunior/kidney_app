@@ -68,11 +68,16 @@ class _PageListaMedicacao extends State<PageListaMedicacao> {
         floatingActionButton: FloatingActionButton(
           onPressed: (){
             NotificacaoDiaria().lista();
-
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => PageMedicacao()),
-            );
+            ).then((alterado){
+              if (alterado != null && alterado) {
+                _medicacao = MedicacaoDatabase.lista();
+                setState(() {
+                });
+              }
+            });
           },
           tooltip: 'Increment',
           child: Icon(Icons.add),
@@ -111,7 +116,13 @@ class _PageListaMedicacao extends State<PageListaMedicacao> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => PageMedicacao(medicacao: item[index],))
-                );
+                ).then((alterado){
+                  if (alterado != null && alterado) {
+                    _medicacao = MedicacaoDatabase.lista();
+                    setState(() {
+                    });
+                  }
+                });
               },
             );
           },

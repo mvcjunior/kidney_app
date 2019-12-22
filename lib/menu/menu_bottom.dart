@@ -50,10 +50,11 @@ class _MenuBottom extends State<MenuBottom> {
       ],
       currentIndex: _selectedIndex,
       showUnselectedLabels: true,
-      unselectedItemColor: Colors.green[900],
-      backgroundColor: Colors.green[900],
+      unselectedItemColor: Colors.brown[500],
+      backgroundColor: Colors.brown[900],
       elevation: 10,
-      selectedItemColor: Colors.amber[800],
+      selectedItemColor: Colors.brown[900],
+      unselectedFontSize: 0,
       onTap: _onItemTapped,
     );
   }

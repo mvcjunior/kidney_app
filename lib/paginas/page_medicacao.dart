@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kidney_app/database/medicacao_data.dart';
 import 'package:kidney_app/model/medicacao.dart';
 import 'package:kidney_app/utils/utils.dart';
+import 'package:kidney_app/utils/temas.dart';
 
 class PageMedicacao extends StatefulWidget {
   final Medicacao medicacao;
@@ -64,6 +65,9 @@ class _PageMedicacao extends State<PageMedicacao> {
                       child: Column(
                         children: <Widget>[
                           MaterialButton(
+                            shape: OutlineInputBorder(
+                                borderSide: BorderSide.none
+                            ),
                             child: Row(
                               children: <Widget>[
                                 Icon(Icons.access_time, size: 28),
@@ -79,6 +83,9 @@ class _PageMedicacao extends State<PageMedicacao> {
                               TimeOfDay hrPick = await showTimePicker(
                                 context: context,
                                 initialTime: _horaInfo,
+                                builder: (BuildContext context, Widget child) {
+                                  return Temas.dataHora(child);
+                                },
                               );
                               if (hrPick != null && hrPick != _horaInfo) {
                                 setState(() {
@@ -136,7 +143,7 @@ class _PageMedicacao extends State<PageMedicacao> {
                                 nome: nomeController.text,
                                 quantidade: int.parse(quantidadeController.text),
                               ));
-                            Navigator.pop(context);
+                            Navigator.pop(context, true);
                           }
                         },
                       ),
