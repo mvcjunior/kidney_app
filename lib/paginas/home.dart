@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:kidney_app/paginas/page_medicacao.dart';
+import 'package:kidney_app/paginas/page_view_home.dart';
 import 'package:kidney_app/utils/received_notification.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -33,6 +34,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final MethodChannel platform =
   MethodChannel('crossingthestreams.io/resourceResolver');
+
+  final pageController = PageController(
+    initialPage: 0,
+  );
 
   @override
   void initState() {
@@ -97,12 +102,18 @@ class _MyHomePageState extends State<MyHomePage> {
         elevation: 0,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(
+            widget.title,
+            style: TextStyle(
+              color: Colors.black
+            ),
+        ),
         backgroundColor: Colors.brown,
         leading: Builder(
             builder: (BuildContext context) {
               return IconButton(
                 icon: const Icon(Icons.menu),
+                color: Colors.black,
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
                 },
@@ -112,30 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       backgroundColor: Colors.brown,
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-
-          ],
-        ),
-      ),
+      body: PageViewHome(),
       drawer: MenuDrawer(),
       bottomNavigationBar: MenuBottom(),// This trailing comma makes auto-formatting nicer for build methods.
     );
