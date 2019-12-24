@@ -8,6 +8,7 @@ import 'package:rxdart/subjects.dart';
 import 'package:kidney_app/paginas/page_medicacao.dart';
 import 'package:kidney_app/paginas/page_view_home.dart';
 import 'package:kidney_app/utils/received_notification.dart';
+import 'package:kidney_app/utils/constantes.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 FlutterLocalNotificationsPlugin();
@@ -105,15 +106,15 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(
             widget.title,
             style: TextStyle(
-              color: Colors.black
+              color: Constantes.COR_LETRA
             ),
         ),
-        backgroundColor: Colors.brown,
+        backgroundColor: Constantes.COR,
         leading: Builder(
             builder: (BuildContext context) {
               return IconButton(
                 icon: const Icon(Icons.menu),
-                color: Colors.black,
+                color: Constantes.COR_LETRA,
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
                 },
@@ -122,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
             }
         ),
       ),
-      backgroundColor: Colors.brown,
+      backgroundColor: Constantes.COR,
       body: PageViewHome(),
       drawer: MenuDrawer(),
       bottomNavigationBar: MenuBottom(),// This trailing comma makes auto-formatting nicer for build methods.

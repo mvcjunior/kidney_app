@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:kidney_app/utils/constantes.dart';
 
 class Temas {
   static Theme dataHora(child) {
     return Theme(
       data: ThemeData(
-          primaryColor: Colors.brown[900],
-          accentColor: Colors.brown,
+          primaryColor: Constantes.COR_900,
+          accentColor: Constantes.COR,
           buttonTheme: ButtonThemeData(
             textTheme: ButtonTextTheme.accent,
 
@@ -18,21 +19,21 @@ class Temas {
   static ThemeData principal(){
     return ThemeData(
         colorScheme: ColorScheme(
-          primary: Colors.brown[900],
-          secondary: Colors.brown,
-          surface: Colors.brown[800],
-          error: Colors.red,
-          background: Colors.brown[500] ,
+          primary: Constantes.COR_900,
+          secondary: Constantes.COR,
+          surface: Constantes.COR_800,
+          error: Constantes.COR_ERRO,
+          background: Constantes.COR_500 ,
           brightness: Brightness.light,
-          primaryVariant: Colors.brown[900],
-          secondaryVariant: Colors.brown,
-          onPrimary: Colors.brown[900],
-          onSecondary: Colors.brown,
-          onSurface: Colors.brown[800],
-          onError: Colors.red,
-          onBackground: Colors.brown[500],
+          primaryVariant: Constantes.COR_900,
+          secondaryVariant: Constantes.COR,
+          onPrimary: Constantes.COR_900,
+          onSecondary: Constantes.COR,
+          onSurface: Constantes.COR_800,
+          onError: Constantes.COR_ERRO,
+          onBackground: Constantes.COR_500,
         ),
-        cursorColor:  Colors.brown[900],
+        cursorColor:  Constantes.COR_900,
         buttonTheme: ButtonThemeData(
           shape: OutlineInputBorder(),
           buttonColor: Colors.white,
@@ -42,25 +43,25 @@ class Temas {
         inputDecorationTheme: InputDecorationTheme(
           focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-                color: Colors.brown[900]
+                color: Constantes.COR_900
             ),
           ),
           suffixStyle:  TextStyle(
-            color: Colors.brown[900],
+            color: Constantes.COR_900,
             fontSize: 10,
           ),
           prefixStyle: TextStyle(
-            color: Colors.brown[900],
+            color: Constantes.COR_900,
           ),
-          focusColor: Colors.brown[900],
+          focusColor: Constantes.COR_900,
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-                color: Colors.brown[900],
+                color: Constantes.COR_900,
                 width: 0.0
             ),
           ),
           labelStyle: TextStyle(
-              color: Colors.brown[900],
+              color: Constantes.COR_900,
               fontSize: 15
           ),
         ),
@@ -68,7 +69,7 @@ class Temas {
 
         ),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
-            backgroundColor: Colors.brown[600]
+            backgroundColor: Constantes.COR_600
         )
     );
   }

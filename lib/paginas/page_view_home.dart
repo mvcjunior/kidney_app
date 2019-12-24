@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kidney_app/paginas/pages_view_home/view_informacoes.dart';
+import 'package:kidney_app/paginas/pages_view_home/view_proximas_consultas.dart';
+import 'package:kidney_app/paginas/pages_view_home/view_grafico_glicemia.dart';
+import 'package:kidney_app/paginas/pages_view_home/view_grafico_pressao_arterial.dart';
 
 class PageViewHome extends StatefulWidget {
 
@@ -55,9 +59,10 @@ class _PageViewHome extends State<PageViewHome> {
                 controller: pageController,
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
-                  Text('2'),
-                  Text('3'),
-                  Text('4'),
+                  ViewInformacoes(),
+                  ViewProximasConsultas(),
+                  ViewGraficoGlicemia(),
+                  ViewGraficoPressaoArterial()
                 ],
                 onPageChanged: (pagina) {
                   _pagina = pagina;
@@ -76,6 +81,7 @@ class _PageViewHome extends State<PageViewHome> {
                 icone(0),
                 icone(1),
                 icone(2),
+                icone(3),
               ],
             ),
           )
@@ -87,9 +93,10 @@ class _PageViewHome extends State<PageViewHome> {
 
 
   Icon icone (int pagina) {
+    double size = 9;
     return pagina != _pagina ?
-          Icon(Icons.radio_button_unchecked, size: 10)
-        : Icon(Icons.brightness_1, size: 10);
+          Icon(Icons.radio_button_unchecked, size: size)
+        : Icon(Icons.brightness_1, size: size);
   }
 
 

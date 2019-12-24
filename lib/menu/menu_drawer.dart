@@ -4,6 +4,7 @@ import 'package:kidney_app/paginas/page_lista_glicemia.dart';
 import 'package:kidney_app/paginas/page_lista_medicacao.dart';
 import 'package:kidney_app/paginas/perfil/page_perfil.dart';
 import 'package:kidney_app/paginas/page_lista_pressao_arterial.dart';
+import 'package:kidney_app/utils/constantes.dart';
 
 class MenuDrawer extends StatelessWidget {
   static final begin = Offset(0.0, 1.0);
@@ -23,7 +24,7 @@ class MenuDrawer extends StatelessWidget {
             child: Text('Informações do Paciente'),
             margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
             decoration: BoxDecoration(
-              color: Colors.brown[500],
+              color: Constantes.COR_500,
             ),
           ),
           ListTile(
