@@ -15,5 +15,6 @@ class Constantes {
   static final  Color COR_ERRO = Colors.red;
   static final  Color COR_LETRA = Colors.black;
   static final  Color COR_WHITE = Colors.white;
+  static final  int DURACAO_SNACK_BAR = 3;
 
 }

@@ -4,6 +4,7 @@ import 'package:kidney_app/model/agenda.dart';
 import 'package:kidney_app/database/agenda_data.dart';
 import 'package:kidney_app/paginas/page_agenda.dart';
 import 'package:kidney_app/utils/utils.dart';
+import 'package:kidney_app/utils/constantes.dart';
 
 class PageListaAgenda extends StatefulWidget {
 
@@ -27,8 +28,10 @@ class _PageListaAgenda extends State<PageListaAgenda> {
 
 
   Widget build(BuildContext context) {
-    return Scaffold(
-        body:  Column(
+    return Builder(
+      builder: (BuildContext context) {
+        return Scaffold(
+            body:  Column(
                 children: <Widget>[
                   Container(
                     padding: EdgeInsets.fromLTRB(10, 30, 0, 0),
@@ -41,62 +44,90 @@ class _PageListaAgenda extends State<PageListaAgenda> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.fromLTRB(20, 30, 20, 10),
-                    child: Center()
+                      padding: EdgeInsets.fromLTRB(20, 30, 20, 10),
+                      child: Center()
                   ),
                   Container(
-                    height: 540,
-                    child: listaAgenda()
+                      height: 540,
+                      child: listaAgenda()
                   ),
                 ]
             ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => PageAgenda()),
-            );
-          },
-          tooltip: 'Increment',
-          child: Icon(Icons.add),
-        )
+            floatingActionButton: FloatingActionButton(
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PageAgenda()),
+                ).then((mensagem) {
+                  if (mensagem != null) {
+                    setState(() {
+                      _agenda = AgendaDatabase.lista();
+                    });
+                    Scaffold.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(mensagem),
+                      ),
+                    );
+                  }
+                });
+              },
+              tooltip: 'Increment',
+              child: Icon(Icons.add),
+            )
+        );
+      }
     );
   }
 
   Widget listaAgenda() {
-    return FutureBuilder(
-      future: _agenda,
-      builder: (context, agendaSnap) {
-        return ListView.builder(
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          itemCount: agendaSnap.data != null ? agendaSnap.data.length : 0,
-          itemBuilder: (context, index) {
+    return Builder(
+      builder: (BuildContext context) {
+        return FutureBuilder(
+          future: _agenda,
+          builder: (context, agendaSnap) {
+            return ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: agendaSnap.data != null ? agendaSnap.data.length : 0,
+              itemBuilder: (context, index) {
 
-            final List<Agenda> item = agendaSnap.data;
-            final Agenda linha = item[index];
-            return ListTile(
-              title: Column(
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                final List<Agenda> item = agendaSnap.data;
+                final Agenda linha = item[index];
+                return ListTile(
+                  title: Column(
                     children: <Widget>[
-                      Text(Utils.formataDataHora(linha.dataHora)),
-                      Text(linha.tipoEvento),
-                      Text(linha.evento),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(Utils.formataDataHora(linha.dataHora)),
+                          //Text(linha.tipoEvento),
+                          Text(linha.evento),
+                        ],
+                      ),
                     ],
                   ),
-                ],
-              ),
-              subtitle: Column(
-                children: <Widget>[
-                  Text(linha.local)
-                ],
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => PageAgenda(agenda: item[index])),
+                  subtitle: Column(
+                    children: <Widget>[
+                      Text(linha.local)
+                    ],
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PageAgenda(agenda: item[index])),
+                    ).then((mensagem) {
+                      if (mensagem != null) {
+                        setState(() {
+                          _agenda = AgendaDatabase.lista();
+                        });
+                        Scaffold.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(mensagem),
+                          ),
+                        );
+                      }
+                    });
+                  },
                 );
               },
             );
@@ -104,6 +135,7 @@ class _PageListaAgenda extends State<PageListaAgenda> {
         );
       },
     );
+
   }
 
 }
