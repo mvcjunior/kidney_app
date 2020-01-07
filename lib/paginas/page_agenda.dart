@@ -29,7 +29,7 @@ class _PageAgenda extends State<PageAgenda> {
   String dropdownValue = 'Consulta';
 
   DateTime _dataInfo = DateTime.now();
-  TimeOfDay _horaInfo = TimeOfDay.now();
+  TimeOfDay _horaInfo = TimeOfDay.fromDateTime(Constantes.HORA_INICIAL);
 
 
 
@@ -152,6 +152,7 @@ class _PageAgenda extends State<PageAgenda> {
                           ),
                           TextFormField(
                             keyboardType: TextInputType.text,
+                            textCapitalization: TextCapitalization.words,
                             controller: eventoController,
                             decoration: InputDecoration(
                               labelText: 'Evento',
@@ -165,6 +166,7 @@ class _PageAgenda extends State<PageAgenda> {
                           ),
                           TextFormField(
                             keyboardType: TextInputType.text,
+                            textCapitalization: TextCapitalization.words,
                             controller: localController,
                             decoration: InputDecoration(
                               labelText: 'Local',
@@ -192,6 +194,7 @@ class _PageAgenda extends State<PageAgenda> {
                                       dataHora: Utils.dataHora(_dataInfo, _horaInfo),
                                       local: localController.text,
                                       evento: eventoController.text,
+                                      tipoEvento: dropdownValue
                                     ));
                                     var mensagem = 'Evento incluido com sucesso';
                                     if (agenda != null)

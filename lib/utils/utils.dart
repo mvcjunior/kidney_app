@@ -14,9 +14,28 @@ class Utils {
   static final  String DOIS_PONTOS = ':';
 
   static String formataData(DateTime data) {
-    return (data.day < 10 ?  '0' + data.day.toString() : data.day.toString()) + BARRA +
+    return formataDia(data) + BARRA +
         (data.month < 10 ? '0' + data.month.toString() : data.month.toString()) + BARRA +
         data.year.toString();
+  }
+
+  static String formataMes(DateTime data) {
+
+    return meses[data.month-1].toUpperCase();
+  }
+
+  static String anoMesDia(DateTime data) {
+    return data.year.toString() + formataMes(data) + formataDia(data);
+
+  }
+
+  static String formataDia(DateTime data) {
+    return (data.day < 10 ?  '0' + data.day.toString() : data.day.toString());
+  }
+
+  static String formataHoraDateTime(DateTime data) {
+    return (data.hour < 10 ?  '0' + data.hour.toString() : data.hour.toString()) + DOIS_PONTOS +
+        (data.minute < 10 ? '0' + data.minute.toString() : data.minute.toString());
   }
 
   static String formataHora(TimeOfDay  hora) {

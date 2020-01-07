@@ -17,4 +17,10 @@ class Constantes {
   static final  Color COR_WHITE = Colors.white;
   static final  int DURACAO_SNACK_BAR = 3;
 
+  static final  String SEM_CONSULTAS = 'Não há consultas / exames agendados';
+  static final  String SEM_CONSULTAS_PROXIMOS_30 = 'Não há consultas / exames agendados '
+      'para os próximos 30 dias';
+
+  static DateTime HORA_INICIAL = DateTime(2010, 1, 1, 8, 8, 8, 8, 8);
+
 }

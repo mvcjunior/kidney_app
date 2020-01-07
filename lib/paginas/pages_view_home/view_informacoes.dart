@@ -34,11 +34,12 @@ class _ViewInformacoes extends State<ViewInformacoes> {
     return CustomScrollView(
       slivers: <Widget>[
         SliverAppBar(
+          leading: null,
           backgroundColor: Colors.white,
-          expandedHeight: 80.0,
+          expandedHeight: 60.0,
           floating: true,
           pinned: true,
-          snap: true,
+          snap: false,
           flexibleSpace: FlexibleSpaceBar(
               background: Text(
                   'Informações',
@@ -51,7 +52,7 @@ class _ViewInformacoes extends State<ViewInformacoes> {
           //delegate: _SliverAppBarDelegate(),
         //),
         SliverFixedExtentList(
-          itemExtent: 150.0,
+          itemExtent: 164.0,
           delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
               return GestureDetector(
@@ -63,20 +64,23 @@ class _ViewInformacoes extends State<ViewInformacoes> {
                   child: Card(
                       elevation: 5,
                       color: Constantes.COR_200,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.max,
-                        children: <Widget>[
-                          Text(
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.max,
+                          children: <Widget>[
+                            Text(
                               'Blablabla bla blal blallb alblal bla bla bla blablbla bla',
-                            style: TextStyle(color: Constantes.COR_LETRA, fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
+                              style: TextStyle(color: Constantes.COR_LETRA, fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
                               'blablbla bla bla bla bla bla bla bla blablbla bla bla bla bla bla bla bla blablbla bla bla bla bla bla bla bla'
                                   'blablbla bla bla bla bla bla bla bla blablbla bla bla bla bla bla bla bla blablbla bla bla bla bla bla bla bla',
-                            style: TextStyle(color: Constantes.COR_LETRA, fontSize: 15),
-                          )
-                        ],
+                              style: TextStyle(color: Constantes.COR_LETRA, fontSize: 15),
+                            )
+                          ],
+                        ),
                       )
                   ),
                 ),

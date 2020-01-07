@@ -31,9 +31,6 @@ class AgendaDatabase {
     final Database db = await database;
     //final List<Map<String, dynamic>> maps = await db.query('agenda', orderBy: 'data_hora');
     // query(String table, {bool distinct, List<String> columns, String where, List<dynamic> whereArgs, String groupBy, String having, String orderBy, int limit, int offset}
-    print(base);
-    print(base.length);
-
     return List.generate(base.length, (i) {
       return base[i];
     });
