@@ -158,7 +158,10 @@ class _PageGlicemia extends State<PageGlicemia> {
                                     dataHora: Utils.dataHora(_dataInfo, _horaInfo),
                                     indiceGlicemico: int.parse(glicemiaController.text),
                                   ));
-                                  Navigator.pop(context, true);
+                                  var mensagem = 'Medição de glicemia incluida com sucesso';
+                                  if (glicemia != null)
+                                    mensagem = 'Medição de glicemia alterada com sucesso';
+                                  Navigator.pop(context, mensagem);
                                 }
                               },
                             ),
@@ -171,7 +174,7 @@ class _PageGlicemia extends State<PageGlicemia> {
                                       dataHora: Utils.dataHora(_dataInfo, _horaInfo),
                                       indiceGlicemico: int.parse(glicemiaController.text),
                                     ));
-                                    Navigator.pop(context, true);
+                                    Navigator.pop(context, 'Medição de glicemia excluida com sucesso');
                                   }
                                 },
                               ) :

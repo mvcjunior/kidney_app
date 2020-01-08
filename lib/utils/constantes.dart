@@ -21,6 +21,6 @@ class Constantes {
   static final  String SEM_CONSULTAS_PROXIMOS_30 = 'Não há consultas / exames agendados '
       'para os próximos 30 dias';
 
-  static DateTime HORA_INICIAL = DateTime(2010, 1, 1, 8, 8, 8, 8, 8);
+  static DateTime HORA_INICIAL = DateTime(2010, 1, 1, 8, 0, 0, 0, 0);
 
 }

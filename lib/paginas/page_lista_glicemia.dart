@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kidney_app/database/glicemia_data.dart';
 import 'package:kidney_app/model/glicemia.dart';
-import 'package:kidney_app/model/pressao_arterial.dart';
-import 'package:kidney_app/database/pressao_arterial_data.dart';
 import 'package:kidney_app/paginas/page_glicemia.dart';
-import 'package:kidney_app/paginas/page_pressao_arterial.dart';
 import 'package:kidney_app/utils/utils.dart';
 
 class PageListaGlicemia extends StatefulWidget {
@@ -61,21 +58,30 @@ class _PageListaGlicemia extends State<PageListaGlicemia> {
                   ),
                 ]
             ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => PageGlicemia()),
-            ).then((alterado) {
-              if (alterado != null && alterado) {
-                setState(() {
-                  _glicemia = GlicemiaDatabase.lista();
+        floatingActionButton: Builder(
+          builder: (BuildContext context) {
+            return FloatingActionButton(
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PageGlicemia()),
+                ).then((mensagem) {
+                  if (mensagem != null) {
+                    setState(() {
+                      _glicemia = GlicemiaDatabase.lista();
+                    });
+                    Scaffold.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(mensagem),
+                      ),
+                    );
+                  }
                 });
-              }
-            });
+              },
+              tooltip: 'Increment',
+              child: Icon(Icons.add),
+            );
           },
-          tooltip: 'Increment',
-          child: Icon(Icons.add),
         )
     );
   }
@@ -109,11 +115,16 @@ class _PageListaGlicemia extends State<PageListaGlicemia> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => PageGlicemia(glicemia: linha,))
-                ).then((alterado) {
-                  if (alterado != null && alterado) {
+                ).then((mensagem) {
+                  if (mensagem != null) {
                     setState(() {
                       _glicemia = GlicemiaDatabase.lista();
                     });
+                    Scaffold.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(mensagem),
+                      ),
+                    );
                   }
                 });
               },
