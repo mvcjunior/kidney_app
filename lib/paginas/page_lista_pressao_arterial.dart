@@ -58,19 +58,30 @@ class _PageListaPressaoArterial extends State<PageListaPressaoArterial> {
                   ),
                 ]
             ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => PagePressaoArterial()),
-            ).then((alterado) {
-              setState(() {
-                _pressaoArterial = PressaoArterialDatabase.lista();
-              });
-            });
-          },
-          tooltip: 'Increment',
-          child: Icon(Icons.add),
+        floatingActionButton: Builder(
+            builder: (BuildContext context) {
+              return FloatingActionButton(
+                onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PagePressaoArterial()),
+                  ).then((mensagem) {
+                    if (mensagem != null) {
+                      setState(() {
+                        _pressaoArterial = PressaoArterialDatabase.lista();
+                      });
+                      Scaffold.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(mensagem),
+                        ),
+                      );
+                    }
+                  });
+                },
+                tooltip: 'Increment',
+                child: Icon(Icons.add),
+              );
+            }
         )
     );
   }
@@ -105,7 +116,18 @@ class _PageListaPressaoArterial extends State<PageListaPressaoArterial> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => PagePressaoArterial(pressaoArterial: item[index],))
-                );
+                ).then((mensagem) {
+                  if (mensagem != null) {
+                    setState(() {
+                      _pressaoArterial = PressaoArterialDatabase.lista();
+                    });
+                    Scaffold.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(mensagem),
+                      ),
+                    );
+                  }
+                });
               },
             );
           },

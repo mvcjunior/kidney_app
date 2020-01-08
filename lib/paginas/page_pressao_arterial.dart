@@ -217,7 +217,10 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
                                     diastolica: int.parse(diastolicaController.text),
                                     sistolica: int.parse(sistolicaController.text),
                                   ));
-                                  Navigator.pop(context, true);
+                                  var mensagem = 'Medição de pressão arterial incluida com sucesso';
+                                  if (pressaoArterial != null)
+                                    mensagem = 'Medição de pressão arterial alterada com sucesso';
+                                  Navigator.pop(context, mensagem);
                                 }
                               },
                             ),
@@ -231,7 +234,7 @@ class _PagePressaoArterial extends State<PagePressaoArterial> {
                                     diastolica: int.parse(diastolicaController.text),
                                     sistolica: int.parse(sistolicaController.text),
                                   ));
-                                  Navigator.pop(context, true);
+                                  Navigator.pop(context, 'Medição de pressão arterial excluida com sucesso');
                                 }
                               },
                             ) :
