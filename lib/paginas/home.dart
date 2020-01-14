@@ -126,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Constantes.COR,
       body: PageViewHome(),
       drawer: MenuDrawer(),
-      bottomNavigationBar: MenuBottom(),// This trailing comma makes auto-formatting nicer for build methods.
+      //bottomNavigationBar: MenuBottom(),// This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

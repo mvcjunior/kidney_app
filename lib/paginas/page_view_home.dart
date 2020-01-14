@@ -74,7 +74,7 @@ class _PageViewHome extends State<PageViewHome> {
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+            padding: EdgeInsets.fromLTRB(0, 5, 0, 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -84,7 +84,108 @@ class _PageViewHome extends State<PageViewHome> {
                 icone(3),
               ],
             ),
-          )
+          ),
+          SizedBox(
+            width: 400,
+            height: 50,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                Container(
+                  height: 20,
+                  color: Colors.amber[600],
+                  child: const Center(child: Text('Entry A')),
+                ),
+                Container(
+                  height: 20,
+                  color: Colors.amber[500],
+                  child: const Center(child: Text('Entry B')),
+                ),
+                Container(
+                  height: 20,
+                  color: Colors.amber[100],
+                  child: const Center(child: Text('Entry C')),
+                ),
+                Container(
+                  height: 20,
+                  color: Colors.amber[600],
+                  child: const Center(child: Text('Entry A')),
+                ),
+                Container(
+                  height: 20,
+                  color: Colors.amber[500],
+                  child: const Center(child: Text('Entry B')),
+                ),
+                Container(
+                  height: 20,
+                  color: Colors.amber[100],
+                  child: const Center(child: Text('Entry C')),
+                ),
+                Container(
+                  height: 20,
+                  color: Colors.amber[600],
+                  child: const Center(child: Text('Entry A')),
+                ),
+                Container(
+                  height: 20,
+                  color: Colors.amber[500],
+                  child: const Center(child: Text('Entry B')),
+                ),
+                Container(
+                  height: 20,
+                  color: Colors.amber[100],
+                  child: const Center(child: Text('Entry C')),
+                ),
+                Container(
+                  height: 20,
+                  color: Colors.amber[600],
+                  child: const Center(child: Text('Entry A')),
+                ),
+                Container(
+                  height: 20,
+                  color: Colors.amber[500],
+                  child: const Center(child: Text('Entry B')),
+                ),
+                Container(
+                  height: 20,
+                  color: Colors.amber[100],
+                  child: const Center(child: Text('Entry C')),
+                ),
+                Container(
+                  height: 20,
+                  color: Colors.amber[600],
+                  child: const Center(child: Text('Entry A')),
+                ),
+                Container(
+                  height: 20,
+                  color: Colors.amber[500],
+                  child: const Center(child: Text('Entry B')),
+                ),
+                Container(
+                  height: 20,
+                  color: Colors.amber[100],
+                  child: const Center(child: Text('Entry C')),
+                ),
+                Container(
+                  height: 20,
+                  color: Colors.amber[600],
+                  child: const Center(child: Text('Entry A')),
+                ),
+                Container(
+                  height: 20,
+                  color: Colors.amber[500],
+                  child: const Center(child: Text('Entry B')),
+                ),
+                Container(
+                  height: 20,
+                  color: Colors.amber[100],
+                  child: const Center(child: Text('Entry C')),
+                ),
+
+              ],
+            )
+            ,
+          ),
         ],
       )
     );

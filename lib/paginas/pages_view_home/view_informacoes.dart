@@ -22,6 +22,7 @@ class _ViewInformacoes extends State<ViewInformacoes> {
   }
 
 
+  var assets = ["assets/background_1.jpeg", "assets/background_2.jpeg", "assets/background_3.jpg"];
 
   Widget build(BuildContext context) {
     final scrollController = ScrollController();
@@ -55,15 +56,24 @@ class _ViewInformacoes extends State<ViewInformacoes> {
           itemExtent: 164.0,
           delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
+
+              var asset = Random();
               return GestureDetector(
                 onTap: () {
                   setState(() {
                   });
                 },
                 child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                            image: AssetImage(assets[asset.nextInt(3)]),
+                            fit: BoxFit.fitWidth,
+                          ),
+                    color: Color.fromRGBO(255, 255, 255, 1)
+                  ),
                   child: Card(
                       elevation: 5,
-                      color: Constantes.COR_200,
+                      color:  Color.fromRGBO(255, 255, 255, 0.5),
                       child: Padding(
                         padding: EdgeInsets.all(10),
                         child: Column(
