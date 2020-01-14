@@ -3,6 +3,7 @@ import 'package:kidney_app/paginas/pages_view_home/view_informacoes.dart';
 import 'package:kidney_app/paginas/pages_view_home/view_proximas_consultas.dart';
 import 'package:kidney_app/paginas/pages_view_home/view_grafico_glicemia.dart';
 import 'package:kidney_app/paginas/pages_view_home/view_grafico_pressao_arterial.dart';
+import 'package:kidney_app/utils/constantes.dart';
 
 class PageViewHome extends StatefulWidget {
 
@@ -74,7 +75,7 @@ class _PageViewHome extends State<PageViewHome> {
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(0, 5, 0, 20),
+            padding: EdgeInsets.fromLTRB(0, 5, 0, 18),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -87,99 +88,142 @@ class _PageViewHome extends State<PageViewHome> {
           ),
           SizedBox(
             width: 400,
-            height: 50,
+            height: 80,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: <Widget>[
                 Container(
-                  height: 20,
-                  color: Colors.amber[600],
-                  child: const Center(child: Text('Entry A')),
+                  padding: EdgeInsets.all(5),
+                  height: 180,
+                  width: 110,
+                  color: Constantes.COR,
+                  child: Card(
+                    color: Constantes.COR_200,
+                    elevation: 5,
+                    child:  const Center(child: Text('Pressao Arterial')),
+                  ),
                 ),
                 Container(
-                  height: 20,
-                  color: Colors.amber[500],
-                  child: const Center(child: Text('Entry B')),
+                  padding: EdgeInsets.all(5),
+                  height: 180,
+                  width: 110,
+                  color: Constantes.COR,
+                  child: Card(
+                    color: Constantes.COR_200,
+                    elevation: 5,
+                    child:  const Center(child: Text('Alarmes Medicacoes')),
+                  ),
                 ),
                 Container(
-                  height: 20,
-                  color: Colors.amber[100],
-                  child: const Center(child: Text('Entry C')),
+                  padding: EdgeInsets.all(5),
+                  height: 180,
+                  width: 110,
+                  color: Constantes.COR,
+                  child: Card(
+                    color: Constantes.COR_200,
+                    elevation: 5,
+                    child:  const Center(child: Text('Imunosupressores')),
+                  ),
                 ),
                 Container(
-                  height: 20,
-                  color: Colors.amber[600],
-                  child: const Center(child: Text('Entry A')),
+                  padding: EdgeInsets.all(8),
+                  height: 180,
+                  width: 100,
+                  color: Constantes.COR,
+                  child: Container(
+                    color: Constantes.COR_200,
+                    child:  const Center(child: Text('Entry A')),
+                  ),
                 ),
                 Container(
-                  height: 20,
-                  color: Colors.amber[500],
-                  child: const Center(child: Text('Entry B')),
+                  padding: EdgeInsets.all(8),
+                  height: 180,
+                  width: 100,
+                  color: Constantes.COR,
+                  child: Container(
+                    color: Constantes.COR_200,
+                    child:  const Center(child: Text('Entry A')),
+                  ),
                 ),
                 Container(
-                  height: 20,
-                  color: Colors.amber[100],
-                  child: const Center(child: Text('Entry C')),
+                  padding: EdgeInsets.all(8),
+                  height: 180,
+                  width: 100,
+                  color: Constantes.COR,
+                  child: Container(
+                    color: Constantes.COR_200,
+                    child:  const Center(child: Text('Entry A')),
+                  ),
                 ),
                 Container(
-                  height: 20,
-                  color: Colors.amber[600],
-                  child: const Center(child: Text('Entry A')),
+                  padding: EdgeInsets.all(8),
+                  height: 180,
+                  width: 100,
+                  color: Constantes.COR,
+                  child: Container(
+                    color: Constantes.COR_200,
+                    child:  const Center(child: Text('Entry A')),
+                  ),
                 ),
                 Container(
-                  height: 20,
-                  color: Colors.amber[500],
-                  child: const Center(child: Text('Entry B')),
+                  padding: EdgeInsets.all(8),
+                  height: 180,
+                  width: 100,
+                  color: Constantes.COR,
+                  child: Container(
+                    color: Constantes.COR_200,
+                    child:  const Center(child: Text('Entry A')),
+                  ),
                 ),
                 Container(
-                  height: 20,
-                  color: Colors.amber[100],
-                  child: const Center(child: Text('Entry C')),
+                  padding: EdgeInsets.all(8),
+                  height: 180,
+                  width: 100,
+                  color: Constantes.COR,
+                  child: Container(
+                    color: Constantes.COR_200,
+                    child:  const Center(child: Text('Entry A')),
+                  ),
                 ),
                 Container(
-                  height: 20,
-                  color: Colors.amber[600],
-                  child: const Center(child: Text('Entry A')),
+                  padding: EdgeInsets.all(8),
+                  height: 180,
+                  width: 100,
+                  color: Constantes.COR,
+                  child: Container(
+                    color: Constantes.COR_200,
+                    child:  const Center(child: Text('Entry A')),
+                  ),
                 ),
                 Container(
-                  height: 20,
-                  color: Colors.amber[500],
-                  child: const Center(child: Text('Entry B')),
+                  padding: EdgeInsets.all(8),
+                  height: 180,
+                  width: 100,
+                  color: Constantes.COR,
+                  child: Container(
+                    color: Constantes.COR_200,
+                    child:  const Center(child: Text('Entry A')),
+                  ),
                 ),
                 Container(
-                  height: 20,
-                  color: Colors.amber[100],
-                  child: const Center(child: Text('Entry C')),
+                  padding: EdgeInsets.all(8),
+                  height: 180,
+                  width: 100,
+                  color: Constantes.COR,
+                  child: Container(
+                    color: Constantes.COR_200,
+                    child:  const Center(child: Text('Entry A')),
+                  ),
                 ),
                 Container(
-                  height: 20,
-                  color: Colors.amber[600],
-                  child: const Center(child: Text('Entry A')),
-                ),
-                Container(
-                  height: 20,
-                  color: Colors.amber[500],
-                  child: const Center(child: Text('Entry B')),
-                ),
-                Container(
-                  height: 20,
-                  color: Colors.amber[100],
-                  child: const Center(child: Text('Entry C')),
-                ),
-                Container(
-                  height: 20,
-                  color: Colors.amber[600],
-                  child: const Center(child: Text('Entry A')),
-                ),
-                Container(
-                  height: 20,
-                  color: Colors.amber[500],
-                  child: const Center(child: Text('Entry B')),
-                ),
-                Container(
-                  height: 20,
-                  color: Colors.amber[100],
-                  child: const Center(child: Text('Entry C')),
+                  padding: EdgeInsets.all(8),
+                  height: 180,
+                  width: 100,
+                  color: Constantes.COR,
+                  child: Container(
+                    color: Constantes.COR_200,
+                    child:  const Center(child: Text('Entry A')),
+                  ),
                 ),
 
               ],
